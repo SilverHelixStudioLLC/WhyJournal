@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User } = require('../server/db/models');
+const { User, Entry, Prompt } = require('../server/db/models');
 
 async function seed() {
   await db.sync({ force: true });
@@ -11,7 +11,22 @@ async function seed() {
     User.create({ email: 'user@email.com', password: '123' }),
   ]);
 
+  const entries = await Promise.all([
+    Entry.create({
+      userId: 1,
+      title: 'Entry Title',
+      content: 'Journal entry content goes here',
+    }),
+  ]);
+
+  const prompts = await Promise.all([
+    Prompt.create({ subject: 'Why?', entryId: 1 }),
+  ]);
+
+  //SEED REPORT
   console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${entries.length} entries`);
+  console.log(`seeded ${prompts.length} prompts`);
   console.log(`seeded successfully`);
 }
 
