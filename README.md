@@ -22,6 +22,8 @@ npm run seed
 npm run start-dev
 ```
 
+NOTE: For OAuth to work, you will need to set up some env variables with secrets.
+
 ## Contributors
 * [Joncitone](https://github.com/joncitone)
 * [jsmney](https://github.com/jsmney)
