@@ -4,6 +4,7 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Home, Login, Signup, SingleEntry } from './components';
 import { me } from './store';
+import { LandingPage } from './components';
 
 /**
  * COMPONENT
@@ -28,8 +29,8 @@ class Routes extends Component {
             <Route path="/entry/:entryId" component={SingleEntry} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        {/* Displays our Landing Page component as a fallback */}
+        <Route component={LandingPage} />
       </Switch>
     );
   }
