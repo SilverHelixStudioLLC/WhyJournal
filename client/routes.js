@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Home, Login, Signup, SingleEntry } from './components';
+import {
+  Home,
+  Login,
+  Signup,
+  SingleEntry,
+  LandingPage,
+  NewEntryForm,
+} from './components';
 import { me } from './store';
-import { LandingPage } from './components';
 
 /**
  * COMPONENT
@@ -27,6 +33,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={Home} />
             <Route path="/entry/:entryId" component={SingleEntry} />
+            <Route path="/new-entry-form" component={NewEntryForm} />
             {/* Displays Home component as fallback */}
             <Route component={Home} />
           </Switch>

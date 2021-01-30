@@ -6,5 +6,6 @@
 export { default as Navbar } from './Navbar';
 export { default as Home } from './Home';
 export { default as SingleEntry } from './SingleEntry';
+export { default as NewEntryForm } from './NewEntryForm';
 export { Login, Signup } from './AuthForm';
 export { default as LandingPage } from './LandingPage';
