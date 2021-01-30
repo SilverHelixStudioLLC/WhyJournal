@@ -11,16 +11,15 @@ async function seed() {
     User.create({ email: 'user@email.com', password: '123' }),
   ]);
 
+  const prompts = await Promise.all([Prompt.create({ subject: 'Why?' })]);
+
   const entries = await Promise.all([
     Entry.create({
       userId: 1,
+      promptId: 1,
       title: 'Entry Title',
       content: 'Journal entry content goes here',
     }),
-  ]);
-
-  const prompts = await Promise.all([
-    Prompt.create({ subject: 'Why?', entryId: 1 }),
   ]);
 
   //SEED REPORT

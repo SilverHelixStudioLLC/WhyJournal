@@ -6,8 +6,8 @@ const Prompt = require('./prompt');
 User.hasMany(Entry);
 Entry.belongsTo(User);
 
-Entry.hasOne(Prompt);
-Prompt.belongsTo(Entry);
+Prompt.hasMany(Entry);
+Entry.belongsTo(Prompt);
 
 // EXPORTS
 module.exports = {
