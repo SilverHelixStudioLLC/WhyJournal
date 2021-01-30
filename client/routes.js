@@ -29,7 +29,7 @@ class Routes extends Component {
             <Route path="/entry/:entryId" component={SingleEntry} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
+        {/* Displays our Landing Page component as a fallback */}
         <Route component={LandingPage} />
       </Switch>
     );
