@@ -1,4 +1,4 @@
 # Why Journal
 ## Contributors
-Joncitone
-jsmney
+[Joncitone](https://github.com/joncitone)
+[jsmney](https://github.com/jsmney)
