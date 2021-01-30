@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
+import Button from '@material-ui/core/Button';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -11,7 +12,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
+          <Button href="/home">Home</Button>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -19,8 +20,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Button href="/login">Login</Button>
+          <Button to="/signup">Sign Up</Button>
         </div>
       )}
     </nav>
