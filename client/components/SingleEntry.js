@@ -15,7 +15,6 @@ export class SingleEntry extends React.Component{
   }
 
   render() {
-    console.log('thissss', this.props.entry)
     const title = this.props.entry.title;
     const content = this.props.entry.content;
     const updatedAt = this.props.entry.updatedAt;
