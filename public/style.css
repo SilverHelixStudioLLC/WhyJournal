@@ -16,19 +16,34 @@ body {
 
 h1 {
   font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1.5rem;
+  color: #00D489;
+}
+
+hr {
+  color: #00D489;
+  border: 1px dashed #00D489;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: #FB0083;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: dotted 1px underline;
+  color: #FF828E;
 }
 
 label {
   display: block;
+}
+
+nav div {
+  display: flex;
+  justify-content: space-between;
 }
 
 nav a {

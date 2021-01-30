@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1><Link to="/">Why Journal</Link></h1>
+    <Link to="/"><h1>Why Journal</h1></Link>
     <nav>
       {isLoggedIn ? (
         <div>
