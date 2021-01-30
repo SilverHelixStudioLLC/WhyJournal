@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
+import { LandingPage } from './LandingPage';
 
 /**
  * COMPONENT
@@ -11,6 +12,8 @@ const AuthForm = (props) => {
 
   return (
     <div>
+      <LandingPage />
+      <h3>{displayName}</h3>
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
