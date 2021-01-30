@@ -32,14 +32,21 @@ const AuthForm = (props) => {
     <Container>
       <h3>{displayName}</h3>
       <form onSubmit={handleSubmit} name={name} className={classes.root}>
-        <TextField variant="filled" label="email" name="email" type="text" />
-        <TextField
-          variant="filled"
-          label="password"
-          name="password"
-          type="password"
-        />
-        <Button type="submit">{displayName}</Button>
+        <Box display="flex" alignItems="center">
+          <TextField variant="filled" label="email" name="email" type="text" />
+          <TextField
+            variant="filled"
+            label="password"
+            name="password"
+            type="password"
+          />
+          <Button variant="contained" type="submit">
+            {displayName}
+          </Button>
+          <Button variant="contained" color="primary" href="/auth/google">
+            {displayName} with Google
+          </Button>
+        </Box>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
     </Container>
