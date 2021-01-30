@@ -37,7 +37,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:userId', async (req, res, next) => {
   try {
-    const [numUpdated, updatedUsers] = await User.update(req.body, {
+    const [, updatedUsers] = await User.update(req.body, {
       where: { id: req.params.userId },
       returning: true,
       plain: true,

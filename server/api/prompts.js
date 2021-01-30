@@ -21,6 +21,7 @@ router.get('/:promptId', async (req, res, next) => {
   }
 });
 
+// admin only actions below
 router.post('/', async (req, res, next) => {
   try {
     const newPrompt = await Prompt.create(req.body);
