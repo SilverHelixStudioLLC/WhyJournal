@@ -22,7 +22,8 @@ export default class LandingPage extends Component {
           <a href="https://jonctione.github.io"> Jonathan Arreola</a> and{' '}
           <a href="https://linkedin.com/in/jsmney">Jasmine Wang</a>. The
           original conception and overall design came from{' '}
-          <a href="https://thethoughtfulbeast.com">Trixi Anne Agiao</a>.
+          <a href="https://thethoughtfulbeast.com">Trixi Anne Agiao</a> at The
+          Thoughtful Beast.
         </p>
       </div>
     );
