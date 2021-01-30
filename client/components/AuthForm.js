@@ -3,19 +3,35 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
 
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+    '& .MuiButton-root': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
+  const classes = useStyles();
 
   return (
-    <div>
+    <Container>
       <h3>{displayName}</h3>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={handleSubmit} name={name} className={classes.root}>
         <TextField variant="filled" label="email" name="email" type="text" />
         <TextField
           variant="filled"
@@ -26,8 +42,7 @@ const AuthForm = (props) => {
         <Button type="submit">{displayName}</Button>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <Button href="/auth/google">{displayName} with Google</Button>
-    </div>
+    </Container>
   );
 };
 
