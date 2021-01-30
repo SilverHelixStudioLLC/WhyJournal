@@ -2,7 +2,7 @@
 
 ## Setup
 1. Clone the repo.
-2. Install node packages. We are using node version 14.15.4
+2. Install node packages. We are using node version 12.11.1
 ```
 npm install
 ```
