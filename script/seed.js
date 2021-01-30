@@ -9,16 +9,38 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({ email: 'user@email.com', password: '123' }),
+    User.create({ email: 'user2@email.com', password: '123' }),
   ]);
 
-  const prompts = await Promise.all([Prompt.create({ subject: 'Why?' })]);
+  const prompts = await Promise.all([
+    Prompt.create({ subject: 'Why?' }),
+    Prompt.create({ subject: 'How?' }),
+  ]);
 
   const entries = await Promise.all([
     Entry.create({
       userId: 1,
       promptId: 1,
       title: 'Entry Title',
-      content: 'Journal entry content goes here',
+      content: 'my first entry',
+    }),
+    Entry.create({
+      userId: 1,
+      promptId: 2,
+      title: 'Entry 2',
+      content: 'still journaling',
+    }),
+    Entry.create({
+      userId: 2,
+      promptId: 1,
+      title: 'Entry 1',
+      content: 'new to this',
+    }),
+    Entry.create({
+      userId: 2,
+      promptId: 2,
+      title: 'Entry 2',
+      content: 'ba da ba ba ba im lovin it',
     }),
   ]);
 
