@@ -11,9 +11,25 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:entryId', async (req, res, next) => {
+router.get('/user/:userId/', async (req, res, next) => {
   try {
-    const entry = await Entry.findByPk(req.params.entryId);
+    const entry = await Entry.findAll({where: {
+      userId: req.params.userId,
+    }});
+    entry ? res.json(entry) : res.status(400).end();
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/user/:userId/entry/:entryId', async (req, res, next) => {
+  try {
+    const entry = await Entry.findOne({
+      where: {
+        id: req.params.entryId,
+        userId: req.params.userId,
+      }
+    });
     entry ? res.json(entry) : res.status(400).end();
   } catch (err) {
     next(err);
@@ -29,9 +45,9 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:entryId', async (req, res, next) => {
+router.put('/user/:userId/entry/:entryId', async (req, res, next) => {
   try {
-    const [numUpdated, updatedEntries] = await Entry.update(req.body, {
+    const [, updatedEntries] = await Entry.update(req.body, {
       where: { id: req.params.entryId },
       returning: true,
       plain: true,
@@ -42,7 +58,7 @@ router.put('/:entryId', async (req, res, next) => {
   }
 });
 
-router.delete('/:entryId', async (req, res, next) => {
+router.delete('/user/:userId/entry/:entryId', async (req, res, next) => {
   try {
     const entryDeleted = await Entry.destroy({
       where: { id: req.params.entryId },
