@@ -6,7 +6,7 @@
 ```
 npm install
 ```
-3. Set up database and test db
+3. Set up database and test db. You'll need to have [PostgreSQL](https://www.postgresql.org/download/) installed.
 ```
 createdb why-journal
 ```
