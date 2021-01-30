@@ -11,13 +11,12 @@ export const Home = (props) => {
 
   useEffect(() => {
     getEntryCount(userId);
-    console.log(entryCount);
   }, []);
 
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      <h2>You have {entryCount} entries. </h2>
+      <p>You have {entryCount} entries. </p>
     </div>
   );
 };

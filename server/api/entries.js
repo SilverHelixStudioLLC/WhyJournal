@@ -26,7 +26,6 @@ router.get('/user/:userId/', async (req, res, next) => {
 
 router.get('/user/:userId/count/entries', async (req, res, next) => {
   try {
-    console.log('hit the route');
     const user = await User.findByPk(req.params.userId);
     const entryCount = await user.countEntries();
     res.json(entryCount);
