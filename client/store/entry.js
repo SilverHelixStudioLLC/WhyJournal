@@ -55,7 +55,7 @@ export const addEntryThunk = (entry) => {
   };
 };
 
-export const updateEntryThunk = (entryUpdates, entryId) => {
+export const updateEntryThunk = (userId, entryId, entryUpdates) => {
   return async (dispatch) => {
     try {
       let { entriesubject } = entryUpdates;
@@ -65,7 +65,7 @@ export const updateEntryThunk = (entryUpdates, entryId) => {
         subject: entriesubject,
       };
 
-      const { data } = await axios.put(`/api/entries/${entryId}`, putObject);
+      const { data } = await axios.put(`/api/entries/user/${userId}/entry/${entryId}`, putObject);
 
       dispatch(updateEntry(data));
     } catch (err) {
@@ -74,10 +74,10 @@ export const updateEntryThunk = (entryUpdates, entryId) => {
   };
 };
 
-export const removeEntryThunk = (entryId) => {
+export const removeEntryThunk = (userId, entryId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/entries/${entryId}`);
+      await axios.delete(`/api/entries/user/${userId}/entry/${entryId}`);
       dispatch(removeEntry(entryId));
     } catch (err) {
       console.error(err.message);
