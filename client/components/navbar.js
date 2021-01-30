@@ -7,12 +7,15 @@ import Button from '@material-ui/core/Button';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <Link to="/"><h1>Why Journal</h1></Link>
+    <Link to="/">
+      <h1>Why Journal</h1>
+    </Link>
     <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
           <Button href="/home">Home</Button>
+          <Button href="/new-entry-form">New Entry</Button>
           <a href="#" onClick={handleClick}>
             Logout
           </a>

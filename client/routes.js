@@ -1,21 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Home, Login, SignUpForm, SingleEntry } from './components';
-import { me } from './store';
-import { LandingPage } from './components';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import {
+  Home,
+  Login,
+  SignUpForm,
+  SingleEntry,
+  LandingPage,
+  NewEntryForm
+} from './components'
+import { me } from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount() {
-    this.props.loadInitialData();
+    this.props.loadInitialData()
   }
 
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn } = this.props
 
     return (
       <Switch>
@@ -27,6 +33,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={Home} />
             <Route path="/entry/:entryId" component={SingleEntry} />
+            <Route path="/new-entry-form" component={NewEntryForm} />
             {/* Displays Home component as fallback */}
             <Route component={Home} />
           </Switch>
@@ -34,7 +41,7 @@ class Routes extends Component {
         {/* Displays our Landing Page component as a fallback */}
         <Route component={LandingPage} />
       </Switch>
-    );
+    )
   }
 }
 
@@ -45,26 +52,26 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.me.id,
-  };
-};
+    isLoggedIn: !!state.user.me.id
+  }
+}
 
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
-      dispatch(me());
-    },
-  };
-};
+      dispatch(me())
+    }
+  }
+}
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes));
+export default withRouter(connect(mapState, mapDispatch)(Routes))
 
 /**
  * PROP TYPES
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
-};
+  isLoggedIn: PropTypes.bool.isRequired
+}
