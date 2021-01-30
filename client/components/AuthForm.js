@@ -17,7 +17,12 @@ const AuthForm = (props) => {
       <h3>{displayName}</h3>
       <form onSubmit={handleSubmit} name={name}>
         <TextField variant="filled" label="email" name="email" type="text" />
-        <TextField variant="filled" label="password" name="password" type="password" />
+        <TextField
+          variant="filled"
+          label="password"
+          name="password"
+          type="password"
+        />
         <Button type="submit">{displayName}</Button>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
