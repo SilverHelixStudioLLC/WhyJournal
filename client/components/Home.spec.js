@@ -4,19 +4,19 @@ import { expect } from 'chai';
 import React from 'react';
 import enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { UserHome } from './user-home';
+import { Home } from './user-home';
 
 const adapter = new Adapter();
 enzyme.configure({ adapter });
 
-describe('UserHome', () => {
-  let userHome;
+describe('Home', () => {
+  let home;
 
   beforeEach(() => {
-    userHome = shallow(<UserHome email="user@email.com" />);
+    home = shallow(<Home email="user@email.com" />);
   });
 
   it('renders the email in an h3', () => {
-    expect(userHome.find('h3').text()).to.be.equal('Welcome, user@email.com');
+    expect(home.find('h3').text()).to.be.equal('Welcome, user@email.com');
   });
 });
