@@ -33,10 +33,10 @@ export const getAllEntriesThunk = () => {
   };
 };
 
-export const getSingleEntryThunk = (entryId) => {
+export const getSingleEntryThunk = (userId, entryId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/entries/${entryId}`);
+      const { data } = await axios.get(`/api/entries/user/${userId}/entry/${entryId}`);
       dispatch(getSingleEntry(data));
     } catch (err) {
       console.error(err.message);

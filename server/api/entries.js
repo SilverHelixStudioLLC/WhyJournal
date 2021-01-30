@@ -24,13 +24,13 @@ router.get('/user/:userId/', async (req, res, next) => {
 
 router.get('/user/:userId/entry/:entryId', async (req, res, next) => {
   try {
-    const entry = await Entry.findOne({
+    const {dataValues} = await Entry.findOne({
       where: {
         id: req.params.entryId,
         userId: req.params.userId,
       }
     });
-    entry ? res.json(entry) : res.status(400).end();
+    res.json(dataValues);
   } catch (err) {
     next(err);
   }
