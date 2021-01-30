@@ -1,13 +1,49 @@
+/**
+
+Thoughtful Beast branding colors
+#FB0083; magenta
+#FF828E; pink
+#DAFF2E; yellow
+#00D489; green
+#004BD4; blue
+
+*/
+
 body {
-  font-family: sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1.5rem;
+  color: #00D489;
+}
+
+hr {
+  color: #00D489;
+  border: 1px dashed #00D489;
 }
 
 a {
   text-decoration: none;
+  color: #FB0083;
+}
+
+a:hover {
+  text-decoration: dotted 1px underline;
+  color: #FF828E;
 }
 
 label {
   display: block;
+}
+
+nav div {
+  display: flex;
+  justify-content: space-between;
 }
 
 nav a {

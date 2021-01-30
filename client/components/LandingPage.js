@@ -10,7 +10,7 @@ export default class LandingPage extends Component {
   render() {
     return (
       <div>
-        <h1> Welcome </h1>
+        <h2>Welcome</h2>
         <p>
           Have you ever wanted to journal but needed help getting started? The
           Why Journal is designed to make it easier to start journaling. We can
