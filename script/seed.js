@@ -37,7 +37,7 @@ async function seed() {
       content: 'new to this',
     }),
     Entry.create({
-      userId: 1,
+      userId: 2,
       promptId: 2,
       title: 'Entry 2',
       content: 'ba da ba ba ba im lovin it',
