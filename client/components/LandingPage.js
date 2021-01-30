@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 export default class LandingPage extends Component {
-  componentDidMount() {}
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (
