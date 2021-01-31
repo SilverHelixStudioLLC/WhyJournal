@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { auth } from '../store'
+import { signup } from '../store'
 
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
@@ -27,9 +27,36 @@ const useStyles = makeStyles((theme) => ({
  * COMPONENT
  */
 const SignUpForm = (props) => {
-  const { name, handleSubmit, error } = props
+  const { handleSubmit, error } = props
   const classes = useStyles()
-  const [checkedToS, checkToS] = React.useState(false)
+  const [formDetails, updateForm] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmpassword: '',
+  })
+  const [agreedToTerms, checkTerms] = React.useState(false)
+  const [optedIn, checkOptIn] = React.useState(false)
+  const [isSubmitDisabled, disableSubmit] = React.useState(true)
+
+  const formIsValid = () => {
+    if (!agreedToTerms) return false;
+    return (
+      !!formDetails.firstName &&
+      !!formDetails.email &&
+      !!formDetails.password && !!formDetails.confirmpassword && (formDetails.password === formDetails.confirmpassword)
+    )
+  }
+  const handleChange = (e) => {
+    const name = e.target.name
+    const val = e.target.value
+    updateForm({ ...formDetails, [name]: val })
+    if (formIsValid()) {
+      disableSubmit(false)
+    }
+  }
+
   return (
     <Container>
       <h3>Create your own Why Journal</h3>
@@ -37,7 +64,7 @@ const SignUpForm = (props) => {
         Congratulations on taking your first step toward getting in touch with
         your why with the Why Journal!
       </p>
-      <form onSubmit={handleSubmit} name={name} className={classes.root}>
+      <form onSubmit={handleSubmit} name="signup" className={classes.root}>
         <Box display="flex" alignItems="center">
           <TextField
             required
@@ -45,6 +72,7 @@ const SignUpForm = (props) => {
             label="email"
             name="email"
             type="text"
+            onChange={handleChange}
           />
         </Box>
         <Box display="flex" alignItems="center">
@@ -52,14 +80,16 @@ const SignUpForm = (props) => {
             required
             variant="filled"
             label="first name"
-            name="first name"
+            name="firstName"
             type="text"
+            onChange={handleChange}
           />
           <TextField
             variant="filled"
             label="last name"
-            name="last name"
+            name="lastName"
             type="text"
+            onChange={handleChange}
           />
         </Box>
         <Box display="flex" alignItems="center">
@@ -69,21 +99,23 @@ const SignUpForm = (props) => {
             label="password"
             name="password"
             type="password"
+            onChange={handleChange}
           />
           <TextField
             required
             variant="filled"
             label="confirm password"
-            name="password"
+            name="confirmpassword"
             type="password"
+            onChange={handleChange}
           />
         </Box>
         <Box display="flex" alignItems="center">
           <FormControlLabel
             control={
               <Checkbox
-                checked={checkedToS}
-                onChange={(e) => checkToS(e.target.checked)}
+                checked={agreedToTerms}
+                onChange={(e) => checkTerms(e.target.checked)}
                 name="terms"
               />
             }
@@ -94,16 +126,16 @@ const SignUpForm = (props) => {
           <FormControlLabel
             control={
               <Checkbox
-                checked={checkedToS}
-                onChange={(e) => checkToS(e.target.checked)}
-                name="terms"
+                checked={optedIn}
+                onChange={(e) => checkOptIn(e.target.checked)}
+                name="optin"
               />
             }
             label="Yes, I want emails from the Thoughtful Beast on promotions, offers, or whatever."
           />
         </Box>
         <Box display="flex" alignItems="center">
-          <Button variant="contained" type="submit">
+          <Button disabled={isSubmitDisabled} variant="contained" type="submit">
             Create Account
           </Button>
           <Button variant="contained" color="primary" href="/auth/google">
@@ -118,7 +150,6 @@ const SignUpForm = (props) => {
 
 const mapSignup = (state) => {
   return {
-    name: 'signup',
     error: state.user.me.error
   }
 }
@@ -127,10 +158,12 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      const formName = evt.target.name
+      const firstName = evt.target.firstName.value
+      const lastName = evt.target.lastName.value
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const optin = evt.target.optin.checked
+      dispatch(signup(firstName, lastName, email, password, optin))
     }
   }
 }
@@ -141,7 +174,6 @@ export default connect(mapSignup, mapDispatch)(SignUpForm)
  * PROP TYPES
  */
 SignUpForm.propTypes = {
-  name: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }
