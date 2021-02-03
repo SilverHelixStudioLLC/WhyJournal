@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { addEntryThunk } from '../store';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+import {addEntryThunk} from '../store'
 
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 class NewEntryForm extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       title: '',
       content: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const {name, value} = event.target
+    this.setState({[name]: value})
   }
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     this.props.addEntry({
       userId: this.props.userId,
       title: this.state.title,
       content: this.state.content,
-    });
+    })
     this.setState({
       title: '',
       content: '',
-    });
+    })
   }
 
   render() {
@@ -57,26 +57,26 @@ class NewEntryForm extends Component {
           <Button type="submit">Create Entry</Button>
         </form>
       </div>
-    );
+    )
   }
 }
 
 const mapState = (state) => {
   return {
     userId: state.user.me.id,
-  };
-};
+  }
+}
 
 const mapDispatch = (dispatch) => {
   return {
     addEntry(entry) {
-      dispatch(addEntryThunk(entry));
+      dispatch(addEntryThunk(entry))
     },
-  };
-};
+  }
+}
 
-export default connect(mapState, mapDispatch)(NewEntryForm);
+export default connect(mapState, mapDispatch)(NewEntryForm)
 
 NewEntryForm.propTypes = {
   userId: PropTypes.number.isRequired,
-};
+}
