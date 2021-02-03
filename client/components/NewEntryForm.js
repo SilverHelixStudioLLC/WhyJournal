@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import {addEntryThunk} from '../store'
+import {addEntryThunk, getSinglePromptThunk, updateUserThunk} from '../store'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -16,6 +15,10 @@ class NewEntryForm extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+  async componentDidMount() {
+    const promptId = this.props.user.currentPrompt
+    this.props.getPrompt(promptId)
+  }
   handleChange(event) {
     const {name, value} = event.target
     this.setState({[name]: value})
@@ -23,9 +26,14 @@ class NewEntryForm extends Component {
   handleSubmit(event) {
     event.preventDefault()
     this.props.addEntry({
-      userId: this.props.userId,
+      userId: this.props.user.id,
+      promptId: this.props.user.currentPrompt,
       title: this.state.title,
       content: this.state.content,
+    })
+    this.props.updateUser(this.props.user.id, {
+      ...this.props.user,
+      currentPrompt: this.props.user.currentPrompt + 1,
     })
     this.setState({
       title: '',
@@ -34,9 +42,11 @@ class NewEntryForm extends Component {
   }
 
   render() {
+    const promptSubject = this.props.promptSubject
     return (
       <div>
         <h3>New Entry</h3>
+        <h3>{promptSubject}</h3>
         <form onSubmit={this.handleSubmit} name={name}>
           <TextField
             variant="filled"
@@ -63,7 +73,8 @@ class NewEntryForm extends Component {
 
 const mapState = (state) => {
   return {
-    userId: state.user.me.id,
+    user: state.user.me,
+    promptSubject: state.prompt.single.subject,
   }
 }
 
@@ -72,11 +83,13 @@ const mapDispatch = (dispatch) => {
     addEntry(entry) {
       dispatch(addEntryThunk(entry))
     },
+    updateUser(userId, user) {
+      dispatch(updateUserThunk(userId, user))
+    },
+    getPrompt(promptId) {
+      dispatch(getSinglePromptThunk(promptId))
+    },
   }
 }
 
 export default connect(mapState, mapDispatch)(NewEntryForm)
-
-NewEntryForm.propTypes = {
-  userId: PropTypes.number.isRequired,
-}
