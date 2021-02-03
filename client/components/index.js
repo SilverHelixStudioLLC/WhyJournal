@@ -3,9 +3,10 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
-export { default as Navbar } from './Navbar';
-export { default as Home } from './Home';
-export { default as SingleEntry } from './SingleEntry';
-export { default as NewEntryForm } from './NewEntryForm';
-export { Login, Signup } from './AuthForm';
-export { default as LandingPage } from './LandingPage';
+export { default as Navbar } from './Navbar'
+export { default as Home } from './Home'
+export { Login } from './AuthForm'
+export { default as SingleEntry } from './SingleEntry'
+export { default as SignUpForm } from './SignUpForm'
+export { default as NewEntryForm } from './NewEntryForm'
+export { default as LandingPage } from './LandingPage'
