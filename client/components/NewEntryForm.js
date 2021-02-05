@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addEntryThunk, getSinglePromptThunk, updateUserThunk} from '../store'
+import PropTypes from 'prop-types'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -10,7 +11,7 @@ class NewEntryForm extends Component {
     super(props)
     this.state = {
       title: '',
-      content: '',
+      content: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -29,15 +30,15 @@ class NewEntryForm extends Component {
       userId: this.props.user.id,
       promptId: this.props.user.currentPrompt,
       title: this.state.title,
-      content: this.state.content,
+      content: this.state.content
     })
     this.props.updateUser(this.props.user.id, {
       ...this.props.user,
-      currentPrompt: this.props.user.currentPrompt + 1,
+      currentPrompt: this.props.user.currentPrompt + 1
     })
     this.setState({
       title: '',
-      content: '',
+      content: ''
     })
   }
 
@@ -74,7 +75,7 @@ class NewEntryForm extends Component {
 const mapState = (state) => {
   return {
     user: state.user.me,
-    promptSubject: state.prompt.single.subject,
+    promptSubject: state.prompt.single.subject
   }
 }
 
@@ -88,8 +89,15 @@ const mapDispatch = (dispatch) => {
     },
     getPrompt(promptId) {
       dispatch(getSinglePromptThunk(promptId))
-    },
+    }
   }
 }
 
 export default connect(mapState, mapDispatch)(NewEntryForm)
+
+/**
+ * PROP TYPES
+ */
+NewEntryForm.propTypes = {
+  user: PropTypes.object.isRequired
+}
