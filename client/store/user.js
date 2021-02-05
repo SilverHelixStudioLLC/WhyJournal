@@ -37,10 +37,13 @@ export const getAllUsersThunk = () => {
   }
 }
 
+//The getSingleUserThunk below is set for the admin route,
+//since users can use user.me state upon login
+//we may want users to be able to see other users, needs further discussion
 export const getSingleUserThunk = (userId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/users/${userId}`)
+      const { data } = await axios.get(`/admin/users/${userId}`)
       dispatch(getSingleUser(data))
     } catch (err) {
       console.error(err.message)
@@ -51,7 +54,7 @@ export const getSingleUserThunk = (userId) => {
 export const addUserThunk = (user) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post('/api/users', user)
+      const { data } = await axios.post(`/admin/users`, user)
       dispatch(addUser(data))
     } catch (err) {
       console.error(err.message)
@@ -59,10 +62,14 @@ export const addUserThunk = (user) => {
   }
 }
 
-export const updateUserThunk = (userId, user) => {
+//the following thunks are dynamic, distinguishing between admin and non-admin users
+export const updateUserThunk = (reqUser, userId, user) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(`/api/users/${userId}`, user)
+      let route = ''
+      if (reqUser.isAdmin) route = 'admin'
+      else route = 'api'
+      const { data } = await axios.put(`/${route}/users/${userId}`, user)
       dispatch(updateUser(data))
     } catch (err) {
       console.error(err.message)
@@ -70,10 +77,13 @@ export const updateUserThunk = (userId, user) => {
   }
 }
 
-export const removeUserThunk = (userId) => {
+export const removeUserThunk = (reqUser, userId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/users/${userId}`)
+      let route = ''
+      if (reqUser.isAdmin) route = 'admin'
+      else route = 'api'
+      await axios.delete(`/${route}/users/${userId}`)
       dispatch(removeUser(userId))
     } catch (err) {
       console.error(err.message)
