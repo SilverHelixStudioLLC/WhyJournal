@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const {Entry, User} = require('../db/models')
+const { Entry, User } = require('../db/models')
 module.exports = router
-const {userCheckMiddleware} = require('./middleware')
+const { userIsSelfMiddleware } = require('../middleware')
 
-router.get('/user/:userId/', userCheckMiddleware, async (req, res, next) => {
+router.get('/user/:userId/', userIsSelfMiddleware, async (req, res, next) => {
   try {
     const entry = await Entry.findAll({
       where: {
@@ -18,7 +18,7 @@ router.get('/user/:userId/', userCheckMiddleware, async (req, res, next) => {
 
 router.get(
   '/user/:userId/count/entries',
-  userCheckMiddleware,
+  userIsSelfMiddleware,
   async (req, res, next) => {
     try {
       const user = await User.findByPk(req.params.userId)
@@ -32,10 +32,10 @@ router.get(
 
 router.get(
   '/user/:userId/entry/:entryId',
-  userCheckMiddleware,
+  userIsSelfMiddleware,
   async (req, res, next) => {
     try {
-      const {dataValues} = await Entry.findOne({
+      const { dataValues } = await Entry.findOne({
         where: {
           id: req.params.entryId,
           userId: req.params.userId
@@ -50,10 +50,10 @@ router.get(
 
 router.get(
   '/user/:userId/prompt/:promptId',
-  userCheckMiddleware,
+  userIsSelfMiddleware,
   async (req, res, next) => {
     try {
-      const {dataValues} = await Entry.findOne({
+      const { dataValues } = await Entry.findOne({
         where: {
           promptId: req.params.promptId,
           userId: req.params.userId
@@ -77,11 +77,11 @@ router.post('/', async (req, res, next) => {
 
 router.put(
   '/user/:userId/entry/:entryId',
-  userCheckMiddleware,
+  userIsSelfMiddleware,
   async (req, res, next) => {
     try {
       const [, updatedEntries] = await Entry.update(req.body, {
-        where: {id: req.params.entryId},
+        where: { id: req.params.entryId },
         returning: true,
         plain: true
       })
@@ -94,11 +94,11 @@ router.put(
 
 router.delete(
   '/user/:userId/entry/:entryId',
-  userCheckMiddleware,
+  userIsSelfMiddleware,
   async (req, res, next) => {
     try {
       const entryDeleted = await Entry.destroy({
-        where: {id: req.params.entryId}
+        where: { id: req.params.entryId }
       })
       entryDeleted ? res.send('entry deleted') : res.send('deletion failed')
     } catch (err) {
