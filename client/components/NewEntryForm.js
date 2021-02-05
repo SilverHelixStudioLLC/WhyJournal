@@ -16,7 +16,7 @@ class NewEntryForm extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  async componentDidMount() {
+  componentDidMount() {
     const promptId = this.props.user.currentPrompt
     this.props.getPrompt(promptId)
   }
