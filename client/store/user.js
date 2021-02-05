@@ -29,7 +29,7 @@ const logoutUser = () => ({ type: LOGOUT_USER })
 export const getAllUsersThunk = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('/api/users')
+      const { data } = await axios.get('/admin/users')
       dispatch(getAllUsers(data))
     } catch (err) {
       console.error(err.message)
@@ -47,6 +47,7 @@ export const getSingleUserThunk = (userId) => {
     }
   }
 }
+
 export const addUserThunk = (user) => {
   return async (dispatch) => {
     try {
@@ -57,6 +58,7 @@ export const addUserThunk = (user) => {
     }
   }
 }
+
 export const updateUserThunk = (userId, user) => {
   return async (dispatch) => {
     try {
@@ -78,6 +80,7 @@ export const removeUserThunk = (userId) => {
     }
   }
 }
+
 export const me = () => async (dispatch) => {
   try {
     const res = await axios.get('/auth/me')
