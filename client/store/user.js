@@ -68,7 +68,6 @@ export const updateUserThunk = (reqUser, userId, user) => {
     try {
       let route = ''
       if (reqUser.isAdmin) route = '/admin'
-      console.log(route)
       const { data } = await axios.put(`/api${route}/users/${userId}`, user)
       dispatch(updateUser(data))
     } catch (err) {
