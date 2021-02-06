@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {addEntryThunk, getSinglePromptThunk, updateUserThunk} from '../store'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addEntryThunk, getSinglePromptThunk, updateUserThunk } from '../store'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-
 class NewEntryForm extends Component {
   constructor(props) {
     super(props)
@@ -21,8 +21,8 @@ class NewEntryForm extends Component {
     this.props.getPrompt(promptId)
   }
   handleChange(event) {
-    const {name, value} = event.target
-    this.setState({[name]: value})
+    const { name, value } = event.target
+    this.setState({ [name]: value })
   }
   handleSubmit(event) {
     event.preventDefault()
@@ -44,28 +44,25 @@ class NewEntryForm extends Component {
 
   render() {
     const promptSubject = this.props.promptSubject
+    const promptDetails = this.props.promptDetails
     return (
       <div>
-        <h3>New Entry</h3>
+        <h4>{moment().format("MMMM DD, h:mm a")}</h4>
         <h3>{promptSubject}</h3>
-        <form onSubmit={this.handleSubmit} name={name}>
-          <TextField
-            variant="filled"
-            label="title"
-            name="title"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.title}
-          />
-          <TextField
-            variant="filled"
-            label="content"
-            name="content"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.content}
-          />
-          <Button type="submit">Create Entry</Button>
+        <form onSubmit={this.handleSubmit} name="newEntry" className="new-entry">
+          <div>
+            <TextField
+              variant="outlined"
+              label={promptDetails}
+              multiline
+              rows={20}
+              name="content"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.content}
+            />
+          </div>
+          <Button variant="contained" color="primary" type="submit">Done!</Button>
         </form>
       </div>
     )
@@ -75,7 +72,8 @@ class NewEntryForm extends Component {
 const mapState = (state) => {
   return {
     user: state.user.me,
-    promptSubject: state.prompt.single.subject
+    promptSubject: state.prompt.single.subject,
+    promptDetails: state.prompt.single.details,
   }
 }
 
