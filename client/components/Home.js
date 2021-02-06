@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
@@ -25,8 +25,7 @@ const useStyles = makeStyles({
  */
 export const Home = (props) => {
   const {
-    userId,
-    userFirstName,
+    user,
     entries,
     entryCount,
     getEntryCount,
@@ -36,9 +35,9 @@ export const Home = (props) => {
   } = props
 
   useEffect(() => {
-    getEntryCount(userId)
-    getAllEntries(userId)
-    getPrompts(userId)
+    getEntryCount(user.id)
+    getAllEntries(user.id)
+    getPrompts(user.id)
   }, [])
 
   const classes = useStyles()
@@ -67,8 +66,7 @@ export const Home = (props) => {
  */
 const mapState = (state) => {
   return {
-    userId: state.user.me.id,
-    userFirstName: state.user.me.firstName,
+    user: state.user.me,
     entries: state.entry.all,
     entryCount: state.entry.count,
     email: state.user.me.email,
