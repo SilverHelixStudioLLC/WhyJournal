@@ -26,7 +26,10 @@ export const getAllPromptsThunk = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get('/api/prompts')
-      dispatch(getAllPrompts(data))
+      const normalizedData = data.reduce((ac, cu) => {
+        ac[cu.id] = cu
+        return ac
+      }, {})
     } catch (err) {
       console.error(err.message)
     }
@@ -39,7 +42,11 @@ export const getAllMyPromptsThunk = (userId) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/prompts/user/${userId}`)
-      dispatch(getAllPrompts(data))
+      const normalizedData = data.reduce((ac, cu) => {
+        ac[cu.id] = cu
+        return ac
+      }, {})
+      dispatch(getAllPrompts(normalizedData))
     } catch (err) {
       console.error(err.message)
     }
@@ -102,7 +109,7 @@ export const removePromptThunk = (promptId) => {
  * INITIAL STATE
  */
 const initialState = {
-  all: [],
+  all: {},
   single: {}
 }
 
