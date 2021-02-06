@@ -1,10 +1,14 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 const Prompt = db.define('prompt', {
   subject: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
-});
+  details: {
+    type: Sequelize.STRING,
+    defaultValue: ''
+  }
+})
 
-module.exports = Prompt;
+module.exports = Prompt
