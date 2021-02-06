@@ -4,6 +4,10 @@
 semi: false # true
 singleQuote: true # false
 trailingComma: none # none | es5 | all
+<<<<<<< HEAD
 bracketSpacing: true # false
+=======
+bracketSpacing: true #false
+>>>>>>> e7ca9d0600a486794485cdb60d41d7b090b207f2
 # jsxBracketSameLine: false # false
 # arrowParens: avoid # avoid | always
