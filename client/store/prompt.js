@@ -47,7 +47,7 @@ export const getSinglePromptThunk = (promptId) => {
 export const addPromptThunk = (prompt) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post('/admin/prompts', prompt)
+      const { data } = await axios.post('/api/admin/prompts', prompt)
       dispatch(addPrompt(data))
     } catch (err) {
       console.error(err.message)
@@ -65,7 +65,7 @@ export const updatePromptThunk = (promptUpdates, promptId) => {
         subject: promptSubject
       }
 
-      const { data } = await axios.put(`/admin/prompts/${promptId}`, putObject)
+      const { data } = await axios.put(`/api/admin/prompts/${promptId}`, putObject)
 
       dispatch(updatePrompt(data))
     } catch (err) {
@@ -77,7 +77,7 @@ export const updatePromptThunk = (promptUpdates, promptId) => {
 export const removePromptThunk = (promptId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/admin/prompts/${promptId}`)
+      await axios.delete(`/api/admin/prompts/${promptId}`)
       dispatch(removePrompt(promptId))
     } catch (err) {
       console.error(err.message)

@@ -4,6 +4,7 @@
  * having to figure out which file they belong to!
  */
 export { default as Navbar } from './Navbar'
+export { default as AdminDashboard } from './AdminDashboard'
 export { default as Home } from './Home'
 export { Login } from './AuthForm'
 export { default as SingleEntry } from './SingleEntry'

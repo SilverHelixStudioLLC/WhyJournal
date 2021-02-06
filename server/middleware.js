@@ -1,5 +1,5 @@
 const adminMiddleware = (req, res, next) => {
-  if (req.session.user && req.session.user.isAdmin) {
+  if (req.user && req.user.dataValues.isAdmin) {
     //user is an admin
     next()
   } else {
@@ -11,7 +11,7 @@ const adminMiddleware = (req, res, next) => {
 }
 
 const userIsSelfMiddleware = (req, res, next) => {
-  if (req.session.passport && req.session.passport.user === +req.params.userId) {
+  if (req.user && req.user.dataValues.id === +req.params.userId) {
     //user is self
     next()
   } else {
@@ -23,5 +23,5 @@ const userIsSelfMiddleware = (req, res, next) => {
 
 module.exports = {
   adminMiddleware,
-  userIsSelfMiddleware,
+  userIsSelfMiddleware
 }
