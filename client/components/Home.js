@@ -1,8 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getAllEntriesThunk, getEntryCountThunk } from '../store'
+import {
+  getAllEntriesThunk,
+  getEntryCountThunk,
+  getAllMyPromptsThunk
+} from '../store'
 import { Link } from 'react-router-dom'
+
+// Material UI
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 275,
+    margin: '2em'
+  }
+})
 
 /**
  * COMPONENT
@@ -14,28 +30,34 @@ export const Home = (props) => {
     entries,
     entryCount,
     getEntryCount,
-    getAllEntries
+    getAllEntries,
+    getPrompts,
+    prompts
   } = props
 
   useEffect(() => {
     getEntryCount(userId)
     getAllEntries(userId)
+    getPrompts(userId)
   }, [])
+
+  const classes = useStyles()
 
   return (
     <div>
       <h3>Welcome, {userFirstName}</h3>
       <p>You have {entryCount} entries. </p>
-      <ul>
-        {entries &&
-          entries.map((e) => (
-            <li>
-              <Link key={e.id} to={`/entry/${e.id}`}>
+      {entries &&
+        entries.map((e) => (
+          <Card key={e.id} className={classes.root}>
+            <CardContent>
+              <Link to={`/entry/${e.id}`}>
+                {prompts[e.promptId] && prompts[e.promptId].subject}{' '}
                 {e.updatedAt}
               </Link>
-            </li>
-          ))}
-      </ul>
+            </CardContent>
+          </Card>
+        ))}
     </div>
   )
 }
@@ -49,7 +71,8 @@ const mapState = (state) => {
     userFirstName: state.user.me.firstName,
     entries: state.entry.all,
     entryCount: state.entry.count,
-    email: state.user.me.email
+    email: state.user.me.email,
+    prompts: state.prompt.all
   }
 }
 
@@ -57,6 +80,9 @@ const mapDispatch = (dispatch) => {
   return {
     getEntryCount(userId) {
       dispatch(getEntryCountThunk(userId))
+    },
+    getPrompts(userId) {
+      dispatch(getAllMyPromptsThunk(userId))
     },
     getAllEntries(userId) {
       dispatch(getAllEntriesThunk(userId))
