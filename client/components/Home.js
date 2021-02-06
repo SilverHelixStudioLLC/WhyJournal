@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getEntryCountThunk, updateUserThunk } from '../store'
+import { getEntryCountThunk } from '../store'
 
 /**
  * COMPONENT
@@ -35,9 +35,6 @@ const mapDispatch = (dispatch) => {
   return {
     getEntryCount(userId) {
       dispatch(getEntryCountThunk(userId))
-    },
-    updateUser(reqUser, userId, userPayload) {
-      dispatch(updateUserThunk(reqUser, userId, userPayload))
     }
   }
 }
