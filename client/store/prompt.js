@@ -26,7 +26,27 @@ export const getAllPromptsThunk = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get('/api/prompts')
-      dispatch(getAllPrompts(data))
+      const normalizedData = data.reduce((ac, cu) => {
+        ac[cu.id] = cu
+        return ac
+      }, {})
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+}
+
+// gets only the prompts that a single user has already responded to.
+// in a future where we might not want a user to load every single prompt
+export const getAllMyPromptsThunk = (userId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`/api/prompts/user/${userId}`)
+      const normalizedData = data.reduce((ac, cu) => {
+        ac[cu.id] = cu
+        return ac
+      }, {})
+      dispatch(getAllPrompts(normalizedData))
     } catch (err) {
       console.error(err.message)
     }
@@ -36,7 +56,7 @@ export const getAllPromptsThunk = () => {
 export const getSinglePromptThunk = (promptId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/prompts/${promptId}`)
+      const { data } = await axios.get(`/api/prompts/id/${promptId}`)
       dispatch(getSinglePrompt(data))
     } catch (err) {
       console.error(err.message)
@@ -89,7 +109,7 @@ export const removePromptThunk = (promptId) => {
  * INITIAL STATE
  */
 const initialState = {
-  all: [],
+  all: {},
   single: {}
 }
 

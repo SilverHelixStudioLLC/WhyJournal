@@ -5,12 +5,12 @@ const { userIsSelfMiddleware } = require('../middleware')
 
 router.get('/user/:userId/', userIsSelfMiddleware, async (req, res, next) => {
   try {
-    const entry = await Entry.findAll({
+    const entries = await Entry.findAll({
       where: {
         userId: req.params.userId
       }
     })
-    entry ? res.json(entry) : res.status(400).end()
+    res.json(entries)
   } catch (err) {
     next(err)
   }

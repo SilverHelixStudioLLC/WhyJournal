@@ -24,6 +24,7 @@ async function seed() {
 
   const prompts = await Promise.all([
     Prompt.create({ subject: 'Why?' }),
+    Prompt.create({ subject: 'Who?' }),
     Prompt.create({ subject: 'How?' })
   ])
 
