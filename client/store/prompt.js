@@ -33,10 +33,23 @@ export const getAllPromptsThunk = () => {
   }
 }
 
+// gets only the prompts that a single user has already responded to.
+// in a future where we might not want a user to load every single prompt
+export const getAllMyPromptsThunk = (userId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`/api/prompts/user/${userId}`)
+      dispatch(getAllPrompts(data))
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+}
+
 export const getSinglePromptThunk = (promptId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/prompts/${promptId}`)
+      const { data } = await axios.get(`/api/prompts/id/${promptId}`)
       dispatch(getSinglePrompt(data))
     } catch (err) {
       console.error(err.message)
