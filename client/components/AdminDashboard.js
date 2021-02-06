@@ -6,7 +6,6 @@ class AdminDashboard extends Component {
   constructor(props) {
     super(props)
   }
-
   render() {
     const user = this.props.user
     return (
