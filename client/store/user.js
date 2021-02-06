@@ -29,7 +29,7 @@ const logoutUser = () => ({ type: LOGOUT_USER })
 export const getAllUsersThunk = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('/admin/users')
+      const { data } = await axios.get('/api/admin/users')
       dispatch(getAllUsers(data))
     } catch (err) {
       console.error(err.message)
@@ -43,7 +43,7 @@ export const getAllUsersThunk = () => {
 export const getSingleUserThunk = (userId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/admin/users/${userId}`)
+      const { data } = await axios.get(`/api/admin/users/${userId}`)
       dispatch(getSingleUser(data))
     } catch (err) {
       console.error(err.message)
@@ -54,7 +54,7 @@ export const getSingleUserThunk = (userId) => {
 export const addUserThunk = (user) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/admin/users`, user)
+      const { data } = await axios.post(`/api/admin/users`, user)
       dispatch(addUser(data))
     } catch (err) {
       console.error(err.message)
@@ -67,9 +67,9 @@ export const updateUserThunk = (reqUser, userId, user) => {
   return async (dispatch) => {
     try {
       let route = ''
-      if (reqUser.isAdmin) route = 'admin'
-      else route = 'api'
-      const { data } = await axios.put(`/${route}/users/${userId}`, user)
+      if (reqUser.isAdmin) route = '/admin'
+      console.log(route)
+      const { data } = await axios.put(`/api${route}/users/${userId}`, user)
       dispatch(updateUser(data))
     } catch (err) {
       console.error(err.message)
@@ -81,9 +81,8 @@ export const removeUserThunk = (reqUser, userId) => {
   return async (dispatch) => {
     try {
       let route = ''
-      if (reqUser.isAdmin) route = 'admin'
-      else route = 'api'
-      await axios.delete(`/${route}/users/${userId}`)
+      if (reqUser.isAdmin) route = '/admin'
+      await axios.delete(`/api${route}/users/${userId}`)
       dispatch(removeUser(userId))
     } catch (err) {
       console.error(err.message)
