@@ -50,3 +50,8 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
+
+.new-entry div div{
+  width: 100%;
+  margin-bottom: 1rem;
+}
