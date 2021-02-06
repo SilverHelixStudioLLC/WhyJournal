@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const { User } = require('../db/models')
-const { adminMiddleware } = require('../middleware')
+const { User } = require('../../db/models')
+const { adminMiddleware } = require('../../middleware')
 
 module.exports = router
 
