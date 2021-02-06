@@ -24,10 +24,10 @@ const removeEntry = (entryId) => ({ type: REMOVE_ENTRY, entryId });
  * THUNK CREATORS
  */
 
-export const getAllEntriesThunk = () => {
+export const getAllEntriesThunk = userId => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('/api/entries');
+      const { data } = await axios.get(`/api/entries/user/${userId}`);
       dispatch(getAllEntries(data));
     } catch (err) {
       console.error(err.message);
