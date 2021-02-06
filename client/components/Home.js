@@ -7,23 +7,15 @@ import { getEntryCountThunk, updateUserThunk } from '../store'
  * COMPONENT
  */
 export const Home = (props) => {
-  const {
-    userId,
-    entryCount,
-    userFirstName,
-    getEntryCount,
-    user,
-    updateUser
-  } = props
+  const { entryCount, getEntryCount, user } = props
 
   useEffect(() => {
-    getEntryCount(userId)
-    updateUser(user, userId, user)
+    getEntryCount(user.id)
   }, [])
 
   return (
     <div>
-      <h3>Welcome, {userFirstName}</h3>
+      <h3>Welcome, {user.firstName}</h3>
       <p>You have {entryCount} entries. </p>
     </div>
   )
@@ -34,11 +26,8 @@ export const Home = (props) => {
  */
 const mapState = (state) => {
   return {
-    userId: state.user.me.id,
     user: state.user.me,
-    userFirstName: state.user.me.firstName,
-    entryCount: state.entry.count,
-    email: state.user.me.email
+    entryCount: state.entry.count
   }
 }
 
@@ -59,5 +48,5 @@ export default connect(mapState, mapDispatch)(Home)
  * PROP TYPES
  */
 Home.propTypes = {
-  email: PropTypes.string
+  user: PropTypes.object.isRequired
 }
