@@ -27,11 +27,11 @@ class SinglePrompt extends Component {
         {prompt && (
           <div>
             <Card>
-              <CardContent>{prompt.subject}</CardContent>
+              <CardContent>SUBJECT: {prompt.subject}</CardContent>
             </Card>
 
             <Card>
-              <CardContent>{prompt.details}</CardContent>
+              <CardContent>DETAILS: {prompt.details}</CardContent>
             </Card>
           </div>
         )}
@@ -60,7 +60,7 @@ export default connect(mapState, mapDispatch)(SinglePrompt)
 /**
  * PROP TYPES
  */
-AllPrompts.propTypes = {
+SinglePrompt.propTypes = {
   user: PropTypes.object.isRequired,
   prompt: PropTypes.object.isRequired
 }
