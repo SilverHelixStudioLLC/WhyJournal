@@ -5,6 +5,7 @@
  */
 export { default as Navbar } from './Navbar'
 export { default as AdminDashboard } from './AdminDashboard'
+export { default as SinglePrompt } from './SinglePrompt'
 export { default as Home } from './Home'
 export { Login } from './AuthForm'
 export { default as SingleEntry } from './SingleEntry'
