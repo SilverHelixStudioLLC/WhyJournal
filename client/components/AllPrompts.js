@@ -10,8 +10,6 @@ import CardContent from '@material-ui/core/CardContent'
 class AllPrompts extends Component {
   constructor() {
     super()
-
-    this.state = {}
   }
 
   componentDidMount() {
@@ -43,7 +41,6 @@ class AllPrompts extends Component {
 
 const mapState = (state) => {
   return {
-    user: state.user.me,
     prompts: state.prompt.all
   }
 }
@@ -62,6 +59,5 @@ export default connect(mapState, mapDispatch)(AllPrompts)
  * PROP TYPES
  */
 AllPrompts.propTypes = {
-  user: PropTypes.object.isRequired,
   prompts: PropTypes.object.isRequired
 }
