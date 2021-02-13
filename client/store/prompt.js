@@ -30,6 +30,7 @@ export const getAllPromptsThunk = () => {
         ac[cu.id] = cu
         return ac
       }, {})
+      dispatch(getAllPrompts(normalizedData))
     } catch (err) {
       console.error(err.message)
     }
@@ -85,7 +86,10 @@ export const updatePromptThunk = (promptUpdates, promptId) => {
         subject: promptSubject
       }
 
-      const { data } = await axios.put(`/api/admin/prompts/${promptId}`, putObject)
+      const { data } = await axios.put(
+        `/api/admin/prompts/${promptId}`,
+        putObject
+      )
 
       dispatch(updatePrompt(data))
     } catch (err) {

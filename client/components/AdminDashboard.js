@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { Link } from 'react-router-dom'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+
 class AdminDashboard extends Component {
   constructor(props) {
     super(props)
@@ -13,10 +17,16 @@ class AdminDashboard extends Component {
         <h3>Admin Dashboard</h3>
         <p> Hello {user.firstName}</p>
         <p>What would you like to do?</p>
-        <ul>
-          <li>Manage Prompts</li>
-          <li>Manage Users</li>
-        </ul>
+        <Card>
+          <CardContent>
+            <Link to={`/admin/all-prompts`}>Manage Prompts</Link>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <Link to={`/admin/all-users`}>Manage Users</Link>
+          </CardContent>
+        </Card>
       </div>
     )
   }
