@@ -10,6 +10,7 @@ import {
   LandingPage,
   NewEntryForm,
   AdminDashboard,
+  SinglePrompt,
   AllPrompts
 } from './components'
 import { me } from './store'
@@ -38,9 +39,13 @@ class Routes extends Component {
             <Route path="/new-entry-form" component={NewEntryForm} />
             <Route path="/admin/dashboard" component={AdminDashboard} />
             <Route path="/admin/all-prompts" component={AllPrompts} />
+            <Route
+              path="/admin/single-prompt/:promptId"
+              component={SinglePrompt}
+            />
             {/* Components Below will be developed soon, just putting the routes here beforehand*/}
             <Route path="/admin/all-users" component={Home} />
-            <Route path="/admin/single-user" component={Home} />
+            <Route path="/admin/single-user/:userId" component={Home} />
             {/* Displays Home component as fallback */}
             <Route component={Home} />
           </Switch>
