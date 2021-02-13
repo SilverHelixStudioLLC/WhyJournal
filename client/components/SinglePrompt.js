@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 class SinglePrompt extends Component {
   constructor() {
     super()
+    //state will be used to toggle an update-form on this page
     this.state = {}
   }
 
@@ -42,7 +43,6 @@ class SinglePrompt extends Component {
 
 const mapState = (state) => {
   return {
-    user: state.user.me,
     prompt: state.prompt.single
   }
 }
@@ -61,6 +61,5 @@ export default connect(mapState, mapDispatch)(SinglePrompt)
  * PROP TYPES
  */
 SinglePrompt.propTypes = {
-  user: PropTypes.object.isRequired,
   prompt: PropTypes.object.isRequired
 }
