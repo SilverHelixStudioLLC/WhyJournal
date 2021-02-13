@@ -1,7 +1,7 @@
-import React from 'react';
-import { Navbar } from './components';
-import Routes from './routes';
-import Container from '@material-ui/core/Container';
+import React from 'react'
+import { Navbar } from './components'
+import Routes from './routes'
+import Container from '@material-ui/core/Container'
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <Navbar />
       <Routes />
     </Container>
-  );
-};
+  )
+}
 
-export default App;
+export default App

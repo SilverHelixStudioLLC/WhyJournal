@@ -12,7 +12,7 @@ async function seed() {
       firstName: 'Jonathan',
       email: 'user@email.com',
       password: '123',
-      isAdmin: true,
+      isAdmin: true
     }),
     User.create({
       firstName: 'Jasmine',
@@ -23,7 +23,10 @@ async function seed() {
   ])
 
   const prompts = await Promise.all([
-    Prompt.create({ subject: 'tell me Why?', details: "aint nothing but a heartache" }),
+    Prompt.create({
+      subject: 'tell me Why?',
+      details: 'aint nothing but a heartache'
+    }),
     Prompt.create({ subject: 'Who?' }),
     Prompt.create({ subject: 'How?' })
   ])

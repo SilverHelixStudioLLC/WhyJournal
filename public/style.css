@@ -10,31 +10,31 @@ Thoughtful Beast branding colors
 */
 
 body {
-  font-family: "Quicksand", "Roboto", sans-serif;
+  font-family: 'Quicksand', 'Roboto', sans-serif;
   letter-spacing: 1px;
 }
 
 h1 {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   text-align: center;
   margin: 0 auto;
   padding: 1.5rem;
-  color: #00D489;
+  color: #00d489;
 }
 
 hr {
-  color: #00D489;
-  border: 1px dashed #00D489;
+  color: #00d489;
+  border: 1px dashed #00d489;
 }
 
 a {
   text-decoration: none;
-  color: #FB0083;
+  color: #fb0083;
 }
 
 a:hover {
   text-decoration: dotted 1px underline;
-  color: #FF828E;
+  color: #ff828e;
 }
 
 label {
@@ -51,7 +51,7 @@ nav a {
   margin: 1em;
 }
 
-.new-entry div div{
+.new-entry div div {
   width: 100%;
   margin-bottom: 1rem;
 }
