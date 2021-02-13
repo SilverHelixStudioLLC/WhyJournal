@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Op } = require("sequelize");
+const { Op } = require('sequelize')
 const { Prompt, Entry } = require('../db/models')
 
 module.exports = router

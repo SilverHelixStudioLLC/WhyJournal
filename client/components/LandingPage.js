@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 export default class LandingPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
@@ -28,6 +28,6 @@ export default class LandingPage extends Component {
           Thoughtful Beast.
         </p>
       </div>
-    );
+    )
   }
 }

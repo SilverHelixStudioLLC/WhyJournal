@@ -34,18 +34,20 @@ const SignUpForm = (props) => {
     lastName: '',
     email: '',
     password: '',
-    confirmpassword: '',
+    confirmpassword: ''
   })
   const [agreedToTerms, checkTerms] = React.useState(false)
   const [optedIn, checkOptIn] = React.useState(false)
   const [isSubmitDisabled, disableSubmit] = React.useState(true)
 
   const formIsValid = () => {
-    if (!agreedToTerms) return false;
+    if (!agreedToTerms) return false
     return (
       !!formDetails.firstName &&
       !!formDetails.email &&
-      !!formDetails.password && !!formDetails.confirmpassword && (formDetails.password === formDetails.confirmpassword)
+      !!formDetails.password &&
+      !!formDetails.confirmpassword &&
+      formDetails.password === formDetails.confirmpassword
     )
   }
   const handleChange = (e) => {

@@ -1,13 +1,13 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 const Entry = db.define('entry', {
   title: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   content: {
-    type: Sequelize.TEXT,
-  },
-});
+    type: Sequelize.TEXT
+  }
+})
 
-module.exports = Entry;
+module.exports = Entry

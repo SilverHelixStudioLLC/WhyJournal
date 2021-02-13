@@ -50,7 +50,11 @@ class NewEntryForm extends Component {
       <div>
         <h4>{curDate.toLocaleString(DateTime.DATETIME_MED)}</h4>
         <h3>{promptSubject}</h3>
-        <form onSubmit={this.handleSubmit} name="newEntry" className="new-entry">
+        <form
+          onSubmit={this.handleSubmit}
+          name="newEntry"
+          className="new-entry"
+        >
           <div>
             <TextField
               variant="outlined"
@@ -63,7 +67,9 @@ class NewEntryForm extends Component {
               value={this.state.content}
             />
           </div>
-          <Button variant="contained" color="primary" type="submit">Done!</Button>
+          <Button variant="contained" color="primary" type="submit">
+            Done!
+          </Button>
         </form>
       </div>
     )
@@ -74,7 +80,7 @@ const mapState = (state) => {
   return {
     user: state.user.me,
     promptSubject: state.prompt.single.subject,
-    promptDetails: state.prompt.single.details,
+    promptDetails: state.prompt.single.details
   }
 }
 

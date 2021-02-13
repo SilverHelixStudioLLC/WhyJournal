@@ -1,32 +1,32 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { auth } from '../store';
+import React from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { auth } from '../store'
 
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: '25ch',
+      width: '25ch'
     },
     '& .MuiButton-root': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+      margin: theme.spacing(1)
+    }
+  }
+}))
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const { handleSubmit, error } = props;
-  const classes = useStyles();
+  const { handleSubmit, error } = props
+  const classes = useStyles()
 
   return (
     <Container>
@@ -50,32 +50,32 @@ const AuthForm = (props) => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
     </Container>
-  );
-};
+  )
+}
 
 const mapLogin = (state) => {
   return {
-    error: state.user.me.error,
-  };
-};
+    error: state.user.me.error
+  }
+}
 
 const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault();
-      const email = evt.target.email.value;
-      const password = evt.target.password.value;
-      dispatch(auth(email, password));
-    },
-  };
-};
+      evt.preventDefault()
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      dispatch(auth(email, password))
+    }
+  }
+}
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm);
+export const Login = connect(mapLogin, mapDispatch)(AuthForm)
 
 /**
  * PROP TYPES
  */
 AuthForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object,
-};
+  error: PropTypes.object
+}
