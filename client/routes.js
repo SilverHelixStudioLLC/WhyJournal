@@ -10,11 +10,8 @@ import {
   LandingPage,
   NewEntryForm,
   AdminDashboard,
-<<<<<<< HEAD
-  SinglePrompt
-=======
+  SinglePrompt,
   AllPrompts
->>>>>>> 50b2fb23cc744a7f8e92b680f70ba9c2c1f31979
 } from './components'
 import { me } from './store'
 
