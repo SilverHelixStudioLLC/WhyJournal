@@ -1,5 +1,5 @@
 import axios from 'axios'
-import moment from 'moment'
+import { DateTime } from 'luxon'
 
 /**
  * ACTION TYPES
@@ -30,7 +30,8 @@ export const getAllEntriesThunk = (userId) => {
     try {
       const { data } = await axios.get(`/api/entries/user/${userId}`)
       const formattedData = data.map((en) => {
-        en.updatedAt = moment(en.updatedAt).format('MMMM DD, YYYY')
+        const updatedDate = DateTime.fromISO(en.updatedAt)
+        en.updatedAt = updatedDate.toLocaleString(DateTime.DATE_MED)
         return en
       })
       dispatch(getAllEntries(data))
