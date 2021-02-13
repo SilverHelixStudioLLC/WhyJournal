@@ -9,10 +9,11 @@ const db = new Sequelize(
     logging: false,
     dialect: 'postgres',
     dialectOptions: {
-      ssl: true
+      ssl: process.env.DATABASE_URL ? true : false
     }
   }
 )
+
 module.exports = db
 
 // This is a global Mocha hook used for resource cleanup.
