@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addEntryThunk, getSinglePromptThunk, updateUserThunk } from '../store'
 import PropTypes from 'prop-types'
-import moment from 'moment'
+import { DateTime } from 'luxon'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -45,9 +45,10 @@ class NewEntryForm extends Component {
   render() {
     const promptSubject = this.props.promptSubject
     const promptDetails = this.props.promptDetails
+    const curDate = DateTime.now()
     return (
       <div>
-        <h4>{moment().format("MMMM DD, h:mm a")}</h4>
+        <h4>{curDate.toLocaleString(DateTime.DATETIME_MED)}</h4>
         <h3>{promptSubject}</h3>
         <form onSubmit={this.handleSubmit} name="newEntry" className="new-entry">
           <div>
