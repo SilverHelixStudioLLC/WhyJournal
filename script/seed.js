@@ -24,8 +24,14 @@ async function seed() {
 
   const prompts = await Promise.all([
     Prompt.create({
-      subject: 'tell me Why?',
-      details: 'aint nothing but a heartache'
+      subject: `What is your favorite color?
+                Why?
+                What other colors make you feel happy?
+                Why?
+                What colors do you not like?
+                Why?`,
+      details: `How can you use this knowledge to create happiness for yourself?
+                (Ex. Make an accent wall with your favorite color in your home. Wear a color that makes you happy when you're feeling a little tired.)`
     }),
     Prompt.create({ subject: 'Who?' }),
     Prompt.create({ subject: 'How?' })
