@@ -2563,9 +2563,7 @@ var initialState = {
       });
 
     case REMOVE_PROMPT:
-      var resultingState = _objectSpread(_objectSpread({}, state), {}, {
-        all: _objectSpread({}, state.all)
-      });
+      var resultingState = _objectSpread({}, state);
 
       delete resultingState.all[action.promptId];
       return resultingState;

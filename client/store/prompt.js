@@ -139,8 +139,7 @@ export default function (state = initialState, action) {
       }
     case REMOVE_PROMPT:
       const resultingState = {
-        ...state,
-        all: { ...state.all }
+        ...state
       }
       delete resultingState.all[action.promptId]
       return resultingState
