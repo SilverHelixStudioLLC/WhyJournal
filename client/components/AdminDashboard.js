@@ -14,7 +14,7 @@ class AdminDashboard extends Component {
     const user = this.props.user
     return (
       <div>
-        <h3>Admin Dashboard</h3>
+        <h1>Admin Dashboard</h1>
         <p> Hello {user.firstName}</p>
         <p>What would you like to do?</p>
         <Card>

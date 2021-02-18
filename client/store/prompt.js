@@ -76,14 +76,15 @@ export const addPromptThunk = (prompt) => {
   }
 }
 
-export const updatePromptThunk = (promptUpdates, promptId) => {
+export const updatePromptThunk = (updatedPrompt, promptId) => {
   return async (dispatch) => {
     try {
-      let { promptSubject } = promptUpdates
+      let { subject, details } = updatedPrompt
 
       let putObject = {
         id: promptId,
-        subject: promptSubject
+        subject,
+        details
       }
 
       const { data } = await axios.put(
