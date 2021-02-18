@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getSingleEntryThunk } from '../store'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import { DateTime } from 'luxon'
 
 export class SingleEntry extends React.Component {
   constructor(props) {
@@ -15,14 +18,19 @@ export class SingleEntry extends React.Component {
   }
 
   render() {
-    const title = this.props.entry.title
-    const content = this.props.entry.content
-    const updatedAt = this.props.entry.updatedAt
+    const entry = this.props.entry
+    const time = DateTime.fromISO(entry.updatedAt)
     return (
       <div>
-        <h1>{title}</h1>
-        <h2>{updatedAt}</h2>
-        <p>{content}</p>
+        {entry && time.c && (
+          <Card>
+            <CardContent>
+              <h1>{entry.title}</h1>
+              <h2>{`${time.c.month}/${time.c.day}/${time.c.year}`}</h2>
+              <p>{entry.content}</p>
+            </CardContent>
+          </Card>
+        )}
       </div>
     )
   }
