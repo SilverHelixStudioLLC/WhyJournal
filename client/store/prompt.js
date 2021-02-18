@@ -127,21 +127,23 @@ export default function (state = initialState, action) {
     case GET_SINGLE_PROMPT:
       return { ...state, single: action.prompt }
     case ADD_PROMPT:
-      return { ...state, all: [...state.all, action.prompt] }
+      return {
+        ...state,
+        all: { ...state.all, [action.prompt.id]: action.prompt }
+      }
     case UPDATE_PROMPT:
       return {
         ...state,
         single: action.prompt,
-        all: state.all.map((prompt) => {
-          if (prompt.id === action.prompt.id) prompt = action.prompt
-          return prompt
-        })
+        all: { ...state.all, [action.prompt.id]: action.prompt }
       }
     case REMOVE_PROMPT:
-      return {
+      const resultingState = {
         ...state,
-        all: state.all.filter((prompt) => prompt.id !== action.promptId)
+        all: { ...state.all }
       }
+      delete resultingState.all[action.promptId]
+      return resultingState
 
     default:
       return state

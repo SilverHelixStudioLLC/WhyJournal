@@ -11,7 +11,8 @@ import {
   NewEntryForm,
   AdminDashboard,
   SinglePrompt,
-  AllPrompts
+  AllPrompts,
+  NewPromptForm
 } from './components'
 import { me } from './store'
 
@@ -39,6 +40,7 @@ class Routes extends Component {
             <Route path="/new-entry-form" component={NewEntryForm} />
             <Route path="/admin/dashboard" component={AdminDashboard} />
             <Route path="/admin/all-prompts" component={AllPrompts} />
+            <Route path="/admin/new-prompt-form" component={NewPromptForm} />
             <Route
               path="/admin/single-prompt/:promptId"
               component={SinglePrompt}
