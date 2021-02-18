@@ -224,6 +224,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _material_ui_core_Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js");
 /* harmony import */ var _material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -254,6 +255,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var AllPrompts = /*#__PURE__*/function (_Component) {
   _inherits(AllPrompts, _Component);
 
@@ -275,7 +277,11 @@ var AllPrompts = /*#__PURE__*/function (_Component) {
     value: function render() {
       var prompts = this.props.prompts;
       var promptKeys = Object.keys(prompts);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "All Prompts"), promptKeys && promptKeys.map(function (promptId) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "All Prompts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        variant: "contained",
+        color: "primary",
+        href: "/admin/new-prompt-form"
+      }, "Add New Prompt"), promptKeys && promptKeys.map(function (promptId) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_5__["default"], {
           key: promptId
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
@@ -840,6 +846,159 @@ NewEntryForm.propTypes = {
 
 /***/ }),
 
+/***/ "./client/components/NewPromptForm.js":
+/*!********************************************!*\
+  !*** ./client/components/NewPromptForm.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+var NewPromptForm = /*#__PURE__*/function (_Component) {
+  _inherits(NewPromptForm, _Component);
+
+  var _super = _createSuper(NewPromptForm);
+
+  function NewPromptForm(props) {
+    var _this;
+
+    _classCallCheck(this, NewPromptForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      subject: '',
+      details: ''
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(NewPromptForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var _event$target = event.target,
+          name = _event$target.name,
+          value = _event$target.value;
+      this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      event.preventDefault();
+      this.props.addPrompt({
+        subject: this.state.subject,
+        details: this.state.details
+      });
+      this.setState({
+        subject: '',
+        details: ''
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "New Prompt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        name: "newPrompt",
+        className: "new-prompt"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        variant: "outlined",
+        label: "subject",
+        multiline: true,
+        rows: 7,
+        name: "subject",
+        type: "text",
+        onChange: this.handleChange,
+        value: this.state.subject
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        variant: "outlined",
+        label: "details",
+        multiline: true,
+        rows: 15,
+        name: "details",
+        type: "text",
+        onChange: this.handleChange,
+        value: this.state.details
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        variant: "contained",
+        color: "primary",
+        type: "submit"
+      }, "Create Prompt")));
+    }
+  }]);
+
+  return NewPromptForm;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var mapState = function mapState(state) {
+  return {
+    user: state.user.me
+  };
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    addPrompt: function addPrompt(prompt) {
+      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_2__["addPromptThunk"])(prompt));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatch)(NewPromptForm));
+/**
+ * PROP TYPES
+ */
+
+NewPromptForm.propTypes = {
+  user: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired
+};
+
+/***/ }),
+
 /***/ "./client/components/SignUpForm.js":
 /*!*****************************************!*\
   !*** ./client/components/SignUpForm.js ***!
@@ -1274,7 +1433,7 @@ SinglePrompt.propTypes = {
 /*!************************************!*\
   !*** ./client/components/index.js ***!
   \************************************/
-/*! exports provided: Navbar, AdminDashboard, SinglePrompt, AllPrompts, Home, Login, SingleEntry, SignUpForm, NewEntryForm, LandingPage */
+/*! exports provided: Navbar, AdminDashboard, SinglePrompt, AllPrompts, NewPromptForm, Home, Login, SingleEntry, SignUpForm, NewEntryForm, LandingPage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1291,29 +1450,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AllPrompts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AllPrompts */ "./client/components/AllPrompts.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AllPrompts", function() { return _AllPrompts__WEBPACK_IMPORTED_MODULE_3__["default"]; });
 
-/* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Home */ "./client/components/Home.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Home", function() { return _Home__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+/* harmony import */ var _NewPromptForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NewPromptForm */ "./client/components/NewPromptForm.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NewPromptForm", function() { return _NewPromptForm__WEBPACK_IMPORTED_MODULE_4__["default"]; });
 
-/* harmony import */ var _AuthForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AuthForm */ "./client/components/AuthForm.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Login", function() { return _AuthForm__WEBPACK_IMPORTED_MODULE_5__["Login"]; });
+/* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Home */ "./client/components/Home.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Home", function() { return _Home__WEBPACK_IMPORTED_MODULE_5__["default"]; });
 
-/* harmony import */ var _SingleEntry__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SingleEntry */ "./client/components/SingleEntry.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SingleEntry", function() { return _SingleEntry__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+/* harmony import */ var _AuthForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AuthForm */ "./client/components/AuthForm.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Login", function() { return _AuthForm__WEBPACK_IMPORTED_MODULE_6__["Login"]; });
 
-/* harmony import */ var _SignUpForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SignUpForm */ "./client/components/SignUpForm.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SignUpForm", function() { return _SignUpForm__WEBPACK_IMPORTED_MODULE_7__["default"]; });
+/* harmony import */ var _SingleEntry__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SingleEntry */ "./client/components/SingleEntry.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SingleEntry", function() { return _SingleEntry__WEBPACK_IMPORTED_MODULE_7__["default"]; });
 
-/* harmony import */ var _NewEntryForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./NewEntryForm */ "./client/components/NewEntryForm.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NewEntryForm", function() { return _NewEntryForm__WEBPACK_IMPORTED_MODULE_8__["default"]; });
+/* harmony import */ var _SignUpForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./SignUpForm */ "./client/components/SignUpForm.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SignUpForm", function() { return _SignUpForm__WEBPACK_IMPORTED_MODULE_8__["default"]; });
 
-/* harmony import */ var _LandingPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./LandingPage */ "./client/components/LandingPage.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LandingPage", function() { return _LandingPage__WEBPACK_IMPORTED_MODULE_9__["default"]; });
+/* harmony import */ var _NewEntryForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./NewEntryForm */ "./client/components/NewEntryForm.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NewEntryForm", function() { return _NewEntryForm__WEBPACK_IMPORTED_MODULE_9__["default"]; });
+
+/* harmony import */ var _LandingPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./LandingPage */ "./client/components/LandingPage.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LandingPage", function() { return _LandingPage__WEBPACK_IMPORTED_MODULE_10__["default"]; });
 
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+
 
 
 
@@ -1471,6 +1634,9 @@ var Routes = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/admin/all-prompts",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["AllPrompts"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/admin/new-prompt-form",
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["NewPromptForm"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/admin/single-prompt/:promptId",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["SinglePrompt"]
@@ -2056,18 +2222,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePromptThunk", function() { return removePromptThunk; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2399,24 +2553,22 @@ var initialState = {
 
     case ADD_PROMPT:
       return _objectSpread(_objectSpread({}, state), {}, {
-        all: [].concat(_toConsumableArray(state.all), [action.prompt])
+        all: _objectSpread(_objectSpread({}, state.all), {}, _defineProperty({}, action.prompt.id, action.prompt))
       });
 
     case UPDATE_PROMPT:
       return _objectSpread(_objectSpread({}, state), {}, {
         single: action.prompt,
-        all: state.all.map(function (prompt) {
-          if (prompt.id === action.prompt.id) prompt = action.prompt;
-          return prompt;
-        })
+        all: _objectSpread(_objectSpread({}, state.all), {}, _defineProperty({}, action.prompt.id, action.prompt))
       });
 
     case REMOVE_PROMPT:
-      return _objectSpread(_objectSpread({}, state), {}, {
-        all: state.all.filter(function (prompt) {
-          return prompt.id !== action.promptId;
-        })
+      var resultingState = _objectSpread(_objectSpread({}, state), {}, {
+        all: _objectSpread({}, state.all)
       });
+
+      delete resultingState.all[action.promptId];
+      return resultingState;
 
     default:
       return state;
