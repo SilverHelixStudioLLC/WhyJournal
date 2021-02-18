@@ -10,13 +10,14 @@ async function seed() {
   const users = await Promise.all([
     User.create({
       firstName: 'Jonathan',
+      lastName: 'Arreola',
       email: 'user@email.com',
       password: '123',
       isAdmin: true
     }),
     User.create({
       firstName: 'Jasmine',
-      lastName: 'Surname',
+      lastName: 'Wang',
       email: 'user2@email.com',
       password: '123'
     })
@@ -24,37 +25,67 @@ async function seed() {
 
   const prompts = await Promise.all([
     Prompt.create({
-      subject: 'tell me Why?',
-      details: 'aint nothing but a heartache'
+      subject: `What is your favorite color?
+                Why?
+                What other colors make you feel happy?
+                Why?
+                What colors do you not like?
+                Why?`,
+      details: `How can you use this knowledge to create happiness for yourself?
+                (Ex. Make an accent wall with your favorite color in your home. Wear a color that makes you happy when you're feeling a little tired.)`
     }),
-    Prompt.create({ subject: 'Who?' }),
-    Prompt.create({ subject: 'How?' })
+    Prompt.create({
+      subject: `What is the biggest change you have made in your life so far?
+                Why did you make it?
+                Why is it the most important change you've ever made?`
+    }),
+    Prompt.create({
+      subject: `What advice would you give to a random kid who just asked you about life?
+                Why?
+                Do you think you follow that advice?
+                Why?`
+    }),
+    Prompt.create({
+      subject: `What do you think are your best traits?
+                Why?
+                Were those questions easy for you to answer?
+                Why or why not?`
+    }),
+    Prompt.create({
+      subject: `What makes you feel good about your past? Why?`
+    }),
+    Prompt.create({
+      subject: `Share a memory about you and a childhood friend.
+                Is this memory worth holding onto?
+                Why or why not?`
+    }),
+    Prompt.create({
+      subject: `How do you feel after completing this week of journaling?
+
+                What was the most helpful prompt from this week and why?`
+    })
   ])
 
   const entries = await Promise.all([
     Entry.create({
       userId: 1,
-      promptId: 1,
-      title: 'Entry Title',
+      title: 'Entry Title 1',
       content: 'my first entry'
     }),
     Entry.create({
       userId: 1,
-      promptId: 2,
-      title: 'Entry 2',
-      content: 'still journaling'
+      title: 'Entry Title 2',
+      content: 'my second entry'
     }),
     Entry.create({
       userId: 2,
-      promptId: 1,
       title: 'Entry 1',
-      content: 'new to this'
+      content: 'first entry'
     }),
     Entry.create({
       userId: 2,
-      promptId: 2,
       title: 'Entry 2',
-      content: 'ba da ba ba ba im lovin it'
+      content: 'second etnry'
     })
   ])
 
