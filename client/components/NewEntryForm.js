@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import history from '../history'
 import { addEntryThunk, getSinglePromptThunk, updateUserThunk } from '../store'
 import PropTypes from 'prop-types'
 import { DateTime } from 'luxon'
@@ -32,7 +33,7 @@ class NewEntryForm extends Component {
       title: this.state.title,
       content: this.state.content
     })
-    this.props.updateUser(this.props.user.id, {
+    this.props.updateUser(this.props.user, this.props.user.id, {
       ...this.props.user,
       currentPrompt: this.props.user.currentPrompt + 1
     })
@@ -40,6 +41,7 @@ class NewEntryForm extends Component {
       title: '',
       content: ''
     })
+    history.push('/home')
   }
 
   render() {
@@ -89,8 +91,8 @@ const mapDispatch = (dispatch) => {
     addEntry(entry) {
       dispatch(addEntryThunk(entry))
     },
-    updateUser(userId, user) {
-      dispatch(updateUserThunk(userId, user))
+    updateUser(reqUser, userId, user) {
+      dispatch(updateUserThunk(reqUser, userId, user))
     },
     getPrompt(promptId) {
       dispatch(getSinglePromptThunk(promptId))
