@@ -25,43 +25,47 @@ async function seed() {
 
   const prompts = await Promise.all([
     Prompt.create({
-      subject: `What is your favorite color?
+      subject: `Colors`,
+      details: `What is your favorite color?
                 Why?
                 What other colors make you feel happy?
                 Why?
                 What colors do you not like?
-                Why?`,
-      details: `How can you use this knowledge to create happiness for yourself?
-                (Ex. Make an accent wall with your favorite color in your home. Wear a color that makes you happy when you're feeling a little tired.)`
+                Why?`
     }),
     Prompt.create({
-      subject: `What is the biggest change you have made in your life so far?
+      subject: `Changes`,
+      details: `What is the biggest change you have made in your life so far?
                 Why did you make it?
                 Why is it the most important change you've ever made?`
     }),
     Prompt.create({
-      subject: `What advice would you give to a random kid who just asked you about life?
+      subject: `Advice`,
+      details: `What advice would you give to a random kid who just asked you about life?
                 Why?
                 Do you think you follow that advice?
                 Why?`
     }),
     Prompt.create({
-      subject: `What do you think are your best traits?
+      subject: `Your Best Traits`,
+      details: `What do you think are your best traits?
                 Why?
                 Were those questions easy for you to answer?
                 Why or why not?`
     }),
     Prompt.create({
-      subject: `What makes you feel good about your past? Why?`
+      subject: `Your Past`,
+      details: `What makes you feel good about your past? Why?`
     }),
     Prompt.create({
-      subject: `Share a memory about you and a childhood friend.
+      subject: `Memories of a Friend`,
+      details: `Share a memory about you and a childhood friend.
                 Is this memory worth holding onto?
                 Why or why not?`
     }),
     Prompt.create({
-      subject: `How do you feel after completing this week of journaling?
-
+      subject: `Week 1 - Check in`,
+      details: `How do you feel after completing this week of journaling?
                 What was the most helpful prompt from this week and why?`
     })
   ])

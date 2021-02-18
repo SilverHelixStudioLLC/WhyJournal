@@ -62,6 +62,7 @@ router.put('/:userId', adminMiddleware, async (req, res, next) => {
     const {
       firstName,
       lastName,
+      currentPrompt,
       email,
       password,
       googleId,
@@ -72,6 +73,7 @@ router.put('/:userId', adminMiddleware, async (req, res, next) => {
       {
         firstName,
         lastName,
+        currentPrompt,
         email,
         password,
         googleId,

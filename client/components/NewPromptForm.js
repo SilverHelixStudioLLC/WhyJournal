@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addPromptThunk } from '../store'
+import history from '../history'
 import PropTypes from 'prop-types'
 
 import TextField from '@material-ui/core/TextField'
@@ -16,7 +17,6 @@ class NewPromptForm extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  componentDidMount() {}
   handleChange(event) {
     const { name, value } = event.target
     this.setState({ [name]: value })
@@ -31,6 +31,7 @@ class NewPromptForm extends Component {
       subject: '',
       details: ''
     })
+    history.push('/admin/all-prompts')
   }
 
   render() {
