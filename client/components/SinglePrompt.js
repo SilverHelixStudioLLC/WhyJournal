@@ -6,7 +6,7 @@ import history from '../history'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
-
+// import PropTypes from 'prop-types' TODO: add back
 class SinglePrompt extends Component {
   constructor() {
     super()
@@ -27,8 +27,6 @@ class SinglePrompt extends Component {
   render() {
     const prompt = this.props.prompt
     const promptId = this.props.match.params.promptId
-
-    console.log(typeof prompt)
 
     return (
       <div>
