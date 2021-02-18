@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
 
 class AllPrompts extends Component {
   constructor() {
@@ -23,7 +24,13 @@ class AllPrompts extends Component {
     return (
       <div>
         <h1>All Prompts</h1>
-
+        <Button
+          variant="contained"
+          color="primary"
+          href="/admin/new-prompt-form"
+        >
+          Add New Prompt
+        </Button>
         {promptKeys &&
           promptKeys.map((promptId) => (
             <Card key={promptId}>
