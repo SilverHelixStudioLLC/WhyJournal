@@ -29,8 +29,10 @@ class NewEntryForm extends Component {
   handleChange(event) {
     const { name, value } = event.target
     this.setState({ [name]: value })
-    this.setState({ characterCount: this.state.content.length + 1 })
-    this.setState({ wordCount: this.state.content.split(' ').length })
+    this.setState({
+      characterCount: this.state.content.length + 1,
+      wordCount: this.state.content.split(' ').length
+    })
   }
   handleSubmit(event) {
     event.preventDefault()
