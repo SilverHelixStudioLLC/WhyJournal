@@ -60,3 +60,13 @@ nav a {
   width: 100%;
   margin-bottom: 1rem;
 }
+
+.new-entry-stats {
+  color: gray;
+  font-size: 10pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
