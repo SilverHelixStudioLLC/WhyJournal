@@ -83,7 +83,7 @@ class NewEntryForm extends Component {
               type="text"
               onChange={this.handleChange}
               value={this.state.content}
-              inputProps={{ maxLength: 5000 }}
+              inputProps={{ maxLength: this.state.characterLimit }}
             />
           </div>
           <Button variant="contained" color="primary" type="submit">
