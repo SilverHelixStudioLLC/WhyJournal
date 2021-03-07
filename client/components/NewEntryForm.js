@@ -7,12 +7,16 @@ import { DateTime } from 'luxon'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+
 class NewEntryForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
       title: '',
-      content: ''
+      content: '',
+      characterCount: 0,
+      wordCount: 0,
+      characterLimit: 5000
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,9 +25,14 @@ class NewEntryForm extends Component {
     const promptId = this.props.user.currentPrompt
     this.props.getPrompt(promptId)
   }
+
   handleChange(event) {
     const { name, value } = event.target
     this.setState({ [name]: value })
+    this.setState({
+      characterCount: this.state.content.length + 1,
+      wordCount: this.state.content.split(' ').length
+    })
   }
   handleSubmit(event) {
     event.preventDefault()
@@ -52,6 +61,13 @@ class NewEntryForm extends Component {
       <div>
         <h4>{curDate.toLocaleString(DateTime.DATETIME_MED)}</h4>
         <h3>{promptSubject}</h3>
+        <div className="new-entry-stats">
+          <div>
+            {this.state.characterCount} / {this.state.characterLimit} characters
+          </div>
+          <div>{this.state.wordCount} words</div>
+        </div>
+        <br />
         <form
           onSubmit={this.handleSubmit}
           name="newEntry"
@@ -67,6 +83,7 @@ class NewEntryForm extends Component {
               type="text"
               onChange={this.handleChange}
               value={this.state.content}
+              inputProps={{ maxLength: this.state.characterLimit }}
             />
           </div>
           <Button variant="contained" color="primary" type="submit">

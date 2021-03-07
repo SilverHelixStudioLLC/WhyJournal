@@ -6,7 +6,7 @@ const Entry = db.define('entry', {
     type: Sequelize.STRING
   },
   content: {
-    type: Sequelize.TEXT
+    type: Sequelize.STRING(5000)
   }
 })
 
